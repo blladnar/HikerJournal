@@ -8,17 +8,27 @@
 
 /* Begin PBXBuildFile section */
 		70C277CD2810A0BC00DF3A2B /* HikerJournalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C277CC2810A0BC00DF3A2B /* HikerJournalApp.swift */; };
-		70C277CF2810A0BC00DF3A2B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C277CE2810A0BC00DF3A2B /* ContentView.swift */; };
+		70C277CF2810A0BC00DF3A2B /* CreatePostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C277CE2810A0BC00DF3A2B /* CreatePostView.swift */; };
 		70C277D12810A0BE00DF3A2B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70C277D02810A0BE00DF3A2B /* Assets.xcassets */; };
 		70C277D42810A0BE00DF3A2B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70C277D32810A0BE00DF3A2B /* Preview Assets.xcassets */; };
+		70C277DB2810AF4E00DF3A2B /* PhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C277DA2810AF4E00DF3A2B /* PhotoPicker.swift */; };
+		70C277DD2810C32A00DF3A2B /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C277DC2810C32A00DF3A2B /* ShareSheet.swift */; };
+		70C277DF2810C38400DF3A2B /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C277DE2810C38400DF3A2B /* Post.swift */; };
+		70C277E12810D08500DF3A2B /* ImageFixer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C277E02810D08500DF3A2B /* ImageFixer.swift */; };
+		70C277E32810D64200DF3A2B /* FinishedPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C277E22810D64200DF3A2B /* FinishedPostView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		70C277C92810A0BC00DF3A2B /* HikerJournal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HikerJournal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		70C277CC2810A0BC00DF3A2B /* HikerJournalApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HikerJournalApp.swift; sourceTree = "<group>"; };
-		70C277CE2810A0BC00DF3A2B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		70C277CE2810A0BC00DF3A2B /* CreatePostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostView.swift; sourceTree = "<group>"; };
 		70C277D02810A0BE00DF3A2B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		70C277D32810A0BE00DF3A2B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		70C277DA2810AF4E00DF3A2B /* PhotoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPicker.swift; sourceTree = "<group>"; };
+		70C277DC2810C32A00DF3A2B /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
+		70C277DE2810C38400DF3A2B /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		70C277E02810D08500DF3A2B /* ImageFixer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFixer.swift; sourceTree = "<group>"; };
+		70C277E22810D64200DF3A2B /* FinishedPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishedPostView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,9 +62,14 @@
 			isa = PBXGroup;
 			children = (
 				70C277CC2810A0BC00DF3A2B /* HikerJournalApp.swift */,
-				70C277CE2810A0BC00DF3A2B /* ContentView.swift */,
+				70C277CE2810A0BC00DF3A2B /* CreatePostView.swift */,
+				70C277DA2810AF4E00DF3A2B /* PhotoPicker.swift */,
+				70C277DC2810C32A00DF3A2B /* ShareSheet.swift */,
+				70C277DE2810C38400DF3A2B /* Post.swift */,
 				70C277D02810A0BE00DF3A2B /* Assets.xcassets */,
 				70C277D22810A0BE00DF3A2B /* Preview Content */,
+				70C277E02810D08500DF3A2B /* ImageFixer.swift */,
+				70C277E22810D64200DF3A2B /* FinishedPostView.swift */,
 			);
 			path = HikerJournal;
 			sourceTree = "<group>";
@@ -137,8 +152,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				70C277CF2810A0BC00DF3A2B /* ContentView.swift in Sources */,
+				70C277CF2810A0BC00DF3A2B /* CreatePostView.swift in Sources */,
 				70C277CD2810A0BC00DF3A2B /* HikerJournalApp.swift in Sources */,
+				70C277E12810D08500DF3A2B /* ImageFixer.swift in Sources */,
+				70C277E32810D64200DF3A2B /* FinishedPostView.swift in Sources */,
+				70C277DB2810AF4E00DF3A2B /* PhotoPicker.swift in Sources */,
+				70C277DD2810C32A00DF3A2B /* ShareSheet.swift in Sources */,
+				70C277DF2810C38400DF3A2B /* Post.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,6 +290,8 @@
 				DEVELOPMENT_TEAM = WJMKDS4DY7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "FIgure out where you're camped";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Pull photos for blog posts";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -299,6 +321,8 @@
 				DEVELOPMENT_TEAM = WJMKDS4DY7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "FIgure out where you're camped";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Pull photos for blog posts";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
