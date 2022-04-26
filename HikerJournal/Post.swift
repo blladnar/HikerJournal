@@ -29,6 +29,7 @@ struct FinishedPost: Identifiable {
     let location: CLLocation?
     let headerImage: URL
     let photosURLs: [URL]
+    let images: [UIImage]
 
     var postURL: URL {
         let dateFormatter = DateFormatter()
@@ -44,7 +45,7 @@ struct FinishedPost: Identifiable {
         return url
     }
 
-    private let metersToFeet = 3.28084
+    static let metersToFeet = 3.28084
 
     var bodyText: String {
         var body = "---\n"
@@ -65,7 +66,7 @@ struct FinishedPost: Identifiable {
         if let location = location {
             body += "latitude: \(location.coordinate.latitude)\n"
             body += "longitude: \(location.coordinate.longitude)\n"
-            body += "altitude: \(Int(location.altitude * metersToFeet))\n"
+            body += "altitude: \(Int(location.altitude * Self.metersToFeet))\n"
         }
         body += "---\n"
 
@@ -77,7 +78,6 @@ struct FinishedPost: Identifiable {
     }
 
     static func headerNameWith(title: String) -> String {
-        // TODO
         title.replacingOccurrences(of: " ", with: "-") + "Header.jpg"
     }
 
@@ -175,6 +175,7 @@ class Post: NSObject, ObservableObject {
         let itemProviders = photosResults.map(\.itemProvider).enumerated()
         let group = DispatchGroup()
         var photoURLs: [URL] = []
+        var images: [UIImage] = [header]
 
         for (index, provider) in itemProviders {
             if provider.canLoadObject(ofClass: UIImage.self) {
@@ -185,6 +186,7 @@ class Post: NSObject, ObservableObject {
                         let imageData = image.scaleAndRotateImage(maxSize: image.size.width * 0.5).jpegData(compressionQuality: 0.5)
                         try! imageData?.write(to: photoURL)
                         photoURLs.append(photoURL)
+                        images.append(image)
                     }
                     group.leave()
                 }
@@ -193,14 +195,15 @@ class Post: NSObject, ObservableObject {
 
         group.wait()
 
-        finishedPost = FinishedPost(title: title,
-                                    subtitle: subtitle,
-                                    author: author,
+        finishedPost = FinishedPost(title: title.trimmingCharacters(in: .whitespacesAndNewlines),
+                                    subtitle: subtitle.trimmingCharacters(in: .whitespacesAndNewlines),
+                                    author: author.trimmingCharacters(in: .whitespacesAndNewlines),
                                     mile: Int(mile),
                                     tag: tag,
                                     location: location,
                                     headerImage: headerURL,
-                                    photosURLs: photoURLs)
+                                    photosURLs: photoURLs,
+                                    images: images)
         
     }
 

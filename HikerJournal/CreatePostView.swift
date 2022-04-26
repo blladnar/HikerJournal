@@ -9,6 +9,8 @@ import SwiftUI
 import CoreLocation
 import PhotosUI
 
+let darkGreen = Color(red: 44/255, green: 148/255, blue: 48/255)
+
 struct CreatePostView: View {
     @StateObject var post = Post()
 
@@ -30,23 +32,34 @@ struct CreatePostView: View {
             if let location = post.location {
                 locationView(with: location)
             }
+            Image("cdtlogo")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .padding(30)
             Spacer()
         }
         .padding()
+        .background(Color.gray.opacity(0.5).ignoresSafeArea())
+        .ignoresSafeArea(.keyboard)
         .alert(post.error?.localizedDescription ?? "Error", isPresented: $post.showError) {
             Button("Okay") {
                 post.showError = false
             }
         }
-        .fullScreenCover(isPresented: $post.showHeaderPicker) {
-            let configuration = PHPickerConfiguration(photoLibrary: PHPhotoLibrary.shared())
+        .sheet(isPresented: $post.showHeaderPicker) {
+            let configuration = { () -> PHPickerConfiguration in
+                var config = PHPickerConfiguration(photoLibrary: PHPhotoLibrary.shared())
+                config.filter = .images
+                return config
+            }()
             PhotoPicker(configuration: configuration,
                         isPresented: $post.showHeaderPicker,
                         results: $post.headerImageResults)
         }
-        .fullScreenCover(isPresented: $post.showPhotosPicker) {
+        .sheet(isPresented: $post.showPhotosPicker) {
             let configuration = { () -> PHPickerConfiguration in
                 var config = PHPickerConfiguration(photoLibrary: PHPhotoLibrary.shared())
+                config.filter = .images
                 config.selectionLimit = 0
                 return config
             }()
@@ -66,7 +79,7 @@ struct CreatePostView: View {
             }
             if !post.headerImageResults.isEmpty {
                 Image(systemName: "checkmark.circle")
-                    .foregroundColor(.green)
+                    .foregroundColor(darkGreen)
             }
 
             Spacer()
@@ -85,6 +98,8 @@ struct CreatePostView: View {
                 post.reset()
             }
             Spacer()
+            Text(post.date, style: .date)
+            Spacer()
             Button("Done") {
                 post.done()
             }
@@ -100,7 +115,7 @@ struct CreatePostView: View {
                         post.tag = tag
                     }
                     .padding()
-                    .background(post.tag == tag ? Color.green : Color.gray)
+                    .background(post.tag == tag ? darkGreen : Color.gray)
                     .foregroundColor(.white)
                 }
             }
@@ -108,6 +123,9 @@ struct CreatePostView: View {
     }
 
     private func locationView(with location: CLLocation) -> some View {
-        Text("\(location.coordinate.latitude), \(location.coordinate.longitude)")
+        VStack {
+            Text("\(location.coordinate.latitude), \(location.coordinate.longitude)")
+            Text("\(Int(location.altitude * FinishedPost.metersToFeet)) feet")
+        }
     }
 }

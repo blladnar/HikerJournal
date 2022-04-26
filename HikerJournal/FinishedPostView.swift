@@ -27,14 +27,23 @@ struct FinishedPostView: View {
                 }
             }
             Spacer()
-            Text(post.bodyText)
+            ScrollView {
+                HStack {
+                    Spacer()
+                    Text(post.bodyText)
+                    Spacer()
+                }
+            }
+            .background(Color.white)
+            .padding()
             Spacer()
+            photoCarousel
             Button("Save Body") {
                 showShareBody = true
             }
             .padding()
             .frame(width: 200)
-            .background(Color.green)
+            .background(darkGreen)
             .foregroundColor(.white)
 
             Button("Save Photos") {
@@ -42,16 +51,44 @@ struct FinishedPostView: View {
             }
             .padding()
             .frame(width: 200)
-            .background(Color.green)
+            .background(darkGreen)
             .foregroundColor(.white)
             Spacer()
         }
         .padding()
+        .background(Color.gray.opacity(0.5).ignoresSafeArea())
         .fullScreenCover(isPresented: $showShareBody) {
             ShareSheet(activityItems: [post.postURL], activities: [], isShowing: $showShareBody)
         }
         .fullScreenCover(isPresented: $showSharePhotos) {
             ShareSheet(activityItems: [post.headerURL] + post.photosURLs, activities: [], isShowing: $showShareBody)
+        }
+    }
+
+    private var photoCarousel: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack {
+                ForEach(Array(post.images.enumerated()), id: \.0) { pair in
+                    ZStack(alignment: .bottomTrailing) {
+                        Image(uiImage: pair.1)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(height: 150)
+                        ZStack {
+                            Circle()
+                                .foregroundColor(Color.white)
+                                .frame(width: 30, height: 30)
+                            if pair.0 == 0 {
+                                Text("H")
+                            }
+                            else {
+                                Text("\(pair.0 - 1)")
+                            }
+                        }
+                        .padding(5)
+                    }
+                }
+            }
         }
     }
 }
